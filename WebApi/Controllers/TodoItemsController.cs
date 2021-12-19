@@ -1,12 +1,12 @@
 ﻿using MediatR;
 using WebApi.Dto;
 using Microsoft.AspNetCore.Mvc;
-using WebApi.Handlers.TodoItems.Commands.CreateTodoItem;
-using WebApi.Handlers.TodoItems.Commands.DeleteTodoItem;
-using WebApi.Handlers.TodoItems.Commands.UpdateTodoItem;
-using WebApi.Handlers.TodoItems.Commands.UpdateTodoItemDetails;
-using WebApi.Handlers.TodoItems.Queries.GetTodoItem;
-using WebApi.Handlers.TodoItems.Queries.GetTodoItems;
+using WebApi.Handlers.TodoItem.Commands.CreateTodoItem;
+using WebApi.Handlers.TodoItem.Commands.DeleteTodoItem;
+using WebApi.Handlers.TodoItem.Commands.UpdateTodoItem;
+using WebApi.Handlers.TodoItem.Commands.UpdateTodoItemDetails;
+using WebApi.Handlers.TodoItem.Queries.GetTodoItem;
+using WebApi.Handlers.TodoItem.Queries.GetTodoItems;
 
 namespace WebApi.Controllers
 {

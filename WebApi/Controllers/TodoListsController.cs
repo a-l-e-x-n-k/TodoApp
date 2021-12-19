@@ -1,11 +1,11 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using WebApi.Dto;
-using WebApi.Handlers.TodoLists.Commands.CreateTodoList;
-using WebApi.Handlers.TodoLists.Commands.DeleteTodoList;
-using WebApi.Handlers.TodoLists.Commands.UpdateTodoList;
-using WebApi.Handlers.TodoLists.Queries.GetTodoList;
-using WebApi.Handlers.TodoLists.Queries.GetTodoLists;
+using WebApi.Handlers.TodoList.Commands.CreateTodoList;
+using WebApi.Handlers.TodoList.Commands.DeleteTodoList;
+using WebApi.Handlers.TodoList.Commands.UpdateTodoList;
+using WebApi.Handlers.TodoList.Queries.GetTodoList;
+using WebApi.Handlers.TodoList.Queries.GetTodoLists;
 
 namespace WebApi.Controllers
 {
