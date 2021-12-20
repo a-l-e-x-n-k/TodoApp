@@ -1,6 +1,6 @@
-﻿using Domain.Entities;
-using Domain.Entities.TodoItem;
+﻿using Domain.Entities.TodoItem;
 using Domain.Entities.TodoList;
+using Infrastructure.Data.EntityConfigurations;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Data
@@ -14,5 +14,11 @@ namespace Infrastructure.Data
 
         public DbSet<TodoItemEntity> TodoItems { get; set; } = null!;
         public DbSet<TodoListEntity> TodoLists { get; set; } = null!;
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfiguration(new TodoItemEntityConfiguration());
+            modelBuilder.ApplyConfiguration(new TodoListEntityConfiguration());
+        }
     }
 }

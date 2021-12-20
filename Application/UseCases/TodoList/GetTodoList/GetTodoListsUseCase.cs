@@ -14,6 +14,6 @@ public class GetTodoListsUseCase : IGetTodoListsUseCase
 
 	public async Task<IReadOnlyCollection<TodoListEntity>> Execute()
 	{
-		_repository.
+        throw new NotImplementedException();
 	}
 }

@@ -2,11 +2,11 @@
 
 namespace WebApi.Handlers
 {
-    public abstract class RequestHandlerBase<TRequest> : IRequestHandler<TRequest> where TRequest : IRequest
+    public abstract class TodoAppRequestHandler<TRequest> : IRequestHandler<TRequest> where TRequest : IRequest
     {
         private readonly ILogger _logger;
 
-        protected RequestHandlerBase(ILogger logger)
+        protected TodoAppRequestHandler(ILogger logger)
         {
             _logger = logger;
         }
@@ -34,11 +34,11 @@ namespace WebApi.Handlers
         protected abstract Task Handle(TRequest request, CancellationToken cancellationToken);
     }
     
-    public abstract class RequestHandlerBase<TRequest, TResponse> : IRequestHandler<TRequest, TResponse> where TRequest : IRequest<TResponse>
+    public abstract class TodoAppRequestHandler<TRequest, TResponse> : IRequestHandler<TRequest, TResponse> where TRequest : IRequest<TResponse>
     {
         private readonly ILogger _logger;
 
-        protected RequestHandlerBase(ILogger logger)
+        protected TodoAppRequestHandler(ILogger logger)
         {
             _logger = logger;
         }

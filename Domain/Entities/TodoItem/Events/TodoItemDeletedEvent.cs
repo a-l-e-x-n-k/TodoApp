@@ -1,4 +1,6 @@
-﻿namespace Domain.Entities.TodoItem.Events;
+﻿using Domain.Entities.Common;
+
+namespace Domain.Entities.TodoItem.Events;
 
 public class TodoItemDeletedEvent : DomainEvent
 {

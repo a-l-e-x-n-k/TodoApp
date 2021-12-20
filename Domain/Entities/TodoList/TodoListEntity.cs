@@ -1,4 +1,5 @@
-﻿using Domain.Entities.TodoItem;
+﻿using Domain.Entities.Common;
+using Domain.Entities.TodoItem;
 using Domain.Entities.TodoItem.Events;
 using Domain.Entities.TodoList.Events;
 
@@ -6,7 +7,7 @@ namespace Domain.Entities.TodoList
 {
     public class TodoListEntity : Entity
     {
-        public string? Title { get; set; }
+        public string Title { get; set; }
         
         private readonly List<TodoItemEntity> _items = new List<TodoItemEntity>();
         public IReadOnlyCollection<TodoItemEntity> Items => _items.AsReadOnly();
@@ -20,14 +21,19 @@ namespace Domain.Entities.TodoList
 
         private TodoListEntity(string title)
         {
-            UpdateTitle(title);
+            if (string.IsNullOrWhiteSpace(title))
+            {
+                throw new ArgumentException("Title is required");
+            }
+
+            Title = title;
         }
 
         public TodoItemEntity AddItem(string title)
         {
             var item  = TodoItemEntity.NewDraft(title);
-            item.AddDomainEvent(new TodoItemCreatedEvent(item));
             _items.Add(item);
+            AddDomainEvent(new TodoItemCreatedEvent(item));
             return item;
         }
         
@@ -39,7 +45,7 @@ namespace Domain.Entities.TodoList
                 return;
             }
             _items.Remove(item);
-            item.AddDomainEvent(new TodoItemDeletedEvent(item));
+            AddDomainEvent(new TodoItemDeletedEvent(item));
         }
         
         public void UpdateTitle(string title)

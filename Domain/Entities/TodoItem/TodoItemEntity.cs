@@ -1,19 +1,25 @@
 ﻿// ReSharper disable AutoPropertyCanBeMadeGetOnly.Local
 
+using Domain.Entities.Common;
 using Domain.Entities.TodoItem.Events;
 
 namespace Domain.Entities.TodoItem
 {
     public class TodoItemEntity : Entity
     {
-        public string? Title { get; private set; }
+        public string Title { get; private set; }
         public string? Note { get; private set; }
         public int Order { get; private set; }
         public bool IsCompleted { get; private set; }
 
         private TodoItemEntity(string title)
         {
-            UpdateTitle(title);
+            if (string.IsNullOrWhiteSpace(title))
+            {
+                throw new ArgumentException("Title is required");
+            }
+
+            Title = title;
         }
 
         public static TodoItemEntity NewDraft(string title)
@@ -31,7 +37,7 @@ namespace Domain.Entities.TodoItem
             Title = title;
         }
 
-        public void SetNote(string? note)
+        public void UpdateNote(string? note)
         {
             Note = note;
         }

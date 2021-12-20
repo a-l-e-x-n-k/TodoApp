@@ -1,4 +1,6 @@
-﻿namespace Domain.Entities.TodoList.Events;
+﻿using Domain.Entities.Common;
+
+namespace Domain.Entities.TodoList.Events;
 
 public class TodoListCreatedEvent : DomainEvent
 {
