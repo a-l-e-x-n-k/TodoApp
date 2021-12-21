@@ -24,10 +24,7 @@ namespace WebApi.Controllers
         [HttpGet()]
         public async Task<ActionResult<List<TodoItemBriefDto>>> GetTodoItems(int listId)
         {
-            // return await _context.TodoItems
-            //     .Select(x => ItemToDTO(x))
-            //     .ToListAsync();
-            return await _requestSender.Send(new GetTodoItemsQuery(){ListId = listId});
+            return await _requestSender.Send(new GetTodoItemsQuery() { ListId = listId });
         }
 
 
@@ -35,15 +32,7 @@ namespace WebApi.Controllers
         [HttpGet("{itemId}")]
         public async Task<ActionResult<TodoItemDto>> GetTodoItem(int listId, int itemId)
         {
-            // var todoItem = await _context.TodoItems.FindAsync(itemId);
-            //
-            // if (todoItem == null)
-            // {
-            //     return NotFound();
-            // }
-            //
-            // return ItemToDTO(todoItem);
-            return await _requestSender.Send(new GetTodoItemQuery() { ListId = listId, ItemId = itemId});
+            return await _requestSender.Send(new GetTodoItemQuery() { ListId = listId, ItemId = itemId });
         }
 
         // PUT: api/todo/1/items/5
@@ -58,27 +47,6 @@ namespace WebApi.Controllers
                 IsCompleted = updateModel.IsCompleted,
                 Order = updateModel.Order
             });
-
-            //
-            // var todoItem = await _context.TodoItems.FindAsync(itemId);
-            // if (todoItem == null)
-            // {
-            //     return NotFound();
-            // }
-            //
-            // todoItem.Title = todoItemDto.Title;
-            // todoItem.IsComplete = todoItemDto.IsComplete;
-            //
-            // try
-            // {
-            //     await _context.SaveChangesAsync();
-            // }
-            // catch (DbUpdateConcurrencyException) when (!TodoItemExists(itemId))
-            // {
-            //     return NotFound();
-            // }
-            //
-            // return NoContent();
         }
 
         [HttpPut("{itemId}/details")]
@@ -93,7 +61,7 @@ namespace WebApi.Controllers
         }
 
         // POST: api/todo/1/items
-            [HttpPost]
+        [HttpPost]
         public async Task<ActionResult<TodoItemDto>> CreateTodoItem(int listId, CreateTodoItemModel createItemModel)
         {
             return await _requestSender.Send(new CreateTodoItemCommand()
@@ -102,20 +70,6 @@ namespace WebApi.Controllers
                 Order = createItemModel.Order,
                 Title = createItemModel.Title
             });
-
-            // var todoItem = new TodoItem
-            // {
-            //     IsComplete = todoItemDTO.IsComplete,
-            //     Title = todoItemDTO.Name
-            // };
-            //
-            // _context.TodoItems.Add(todoItem);
-            // await _context.SaveChangesAsync();
-            //
-            // return CreatedAtAction(
-            //     nameof(GetTodoItem),
-            //     new { id = todoItem.Id },
-            //     ItemToDTO(todoItem));
         }
 
         // DELETE: api/todo/1/items/5
@@ -127,30 +81,6 @@ namespace WebApi.Controllers
                 ListId = listId,
                 ItemId = itemId
             });
-            // var todoItem = await _context.TodoItems.FindAsync(itemId);
-            //
-            // if (todoItem == null)
-            // {
-            //     return NotFound();
-            // }
-            //
-            // _context.TodoItems.Remove(todoItem);
-            // await _context.SaveChangesAsync();
-            //
-            // return NoContent();
         }
-
-        // private bool TodoItemExists(long id)
-        // {
-        //     return _context.TodoItems.Any(e => e.Id == id);
-        // }
-        //
-        // private static TodoItemDto ItemToDTO(TodoItem todoItem) =>
-        //     new TodoItemDto
-        //     {
-        //         Id = todoItem.Id,
-        //         Name = todoItem.Title,
-        //         IsComplete = todoItem.IsComplete
-        //     };
     }
 }

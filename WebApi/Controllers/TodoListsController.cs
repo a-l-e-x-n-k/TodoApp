@@ -42,16 +42,12 @@ namespace WebApi.Controllers
         public async Task<ActionResult> Update(int id, UpdateTodoListModel model)
         {
             return await _requestSender.Send(new UpdateTodoListCommand(){Id = id, Title = model.Title});
-
-            // return NoContent();
         }
 
         [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(int id)
         {
             return await _requestSender.Send(new DeleteTodoListCommand { Id = id });
-
-            // return NoContent();
         }
     }
 }
